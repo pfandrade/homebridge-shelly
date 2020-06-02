@@ -126,8 +126,18 @@ module.exports = homebridge => {
       )
 
       try {
+        // Trigger the switch
         await this._setSwitch(true)
+        
+        // Now ensure that we turn the switch off
+        // after 500ms to simulate a pulse to the garage door
+        setTimeout(() => {
+          await this._setSwitch(false)
+        }, 500);
+        
+        // Do the required callback
         callback()
+        // And update the garage door status to HomeKit
         this.updateGarageDoorState()
       } catch (e) {
         handleFailedRequest(
