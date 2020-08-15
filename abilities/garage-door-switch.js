@@ -131,7 +131,7 @@ module.exports = homebridge => {
         
         // Now ensure that we turn the switch off
         // after 500ms to simulate a pulse to the garage door
-        setTimeout(() => {
+        setTimeout(async () => {
           await this._setSwitch(false)
         }, 500);
         
